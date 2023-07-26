@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Stack, Box, TextField, Button } from '@mui/material';
 
 export const Experience = () => {
     const [organization, setOrganization] = useState('');
@@ -41,23 +42,30 @@ export const Experience = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Organization" 
-                value={organization} 
-                onChange={e => setOrganization(e.target.value)} />
-            <input type="text" placeholder="Position" 
-                value={position} onChange={e => setPosition(e.target.value)}/>
-            <input type="text" placeholder="Tasks" 
-                value={task} onChange={e => setTasks(e.target.value)}/>
-            <button onClick={handleTasks}>Add</button>
+    <Stack>
+        <Box component='form' onSubmit={handleSubmit}
+            sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', 
+            alignItems: 'center', width: '100%', height: '100%', gap: '1rem', 
+            backgroundColor: '#fff', color: '#fff', padding: '1rem', 
+            overflow: 'hidden' }}
+        >
+            <TextField type="text" label="Organization" size='small' fullWidth
+                variant='filled' value={organization} onChange={e => setOrganization(e.target.value)} 
+            />
+            <TextField type="text" label="Position" size='small' fullWidth 
+                variant='filled' value={position} onChange={e => setPosition(e.target.value)}
+            />
+            <TextField type="text" label="Tasks" rows={2} fullWidth multiline
+                variant='filled' value={task} onChange={e => setTasks(e.target.value)}
+            />
+            <Button variant='contained' size='small' onClick={handleTasks}>Add</Button>
             <input type="date" placeholder="Start Date" 
                 value={startDate} onChange={e => setStartDate(e.target.value)}/>
             <input type="date" placeholder="End Date" 
                 value={endDate} onChange={e => setEndDate(e.target.value)}/>
-            <button type='submit'>Add Experience</button>
-        </form>
-        <div>
+            <Button variant='contained' size='small' type='submit'>Add Experience</Button>
+        </Box>
+        {/* <Box>
             {experience.map((exp, index) => (
                 <div key={index}>
                     <h3>{exp.organization}</h3>
@@ -69,9 +77,8 @@ export const Experience = () => {
                     </ul>
                     <p>{exp.startDate} - {exp.endDate}</p>
                 </div>
-            )
-            )}
-        </div>
-    </div>
+                ))}
+        </Box> */}
+    </Stack>
   )
 }

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Stack, Box, TextField, Button } from '@mui/material';
 
 export const Education = () => {
     const [school, setSchool] = useState('');
@@ -28,26 +29,31 @@ export const Education = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="School" 
-                value={school} onChange={(e) =>
+    <Stack py={4}>
+        <Box component='form' onSubmit={handleSubmit}
+            sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', 
+            alignItems: 'center', width: '100%', height: '100%', gap: '1rem', 
+            backgroundColor: '#fff', color: '#fff', padding: '1rem', 
+            overflow: 'hidden' }}
+        >
+            <TextField type="text" label="School" size='small' fullWidth
+                variant='filled' value={school} onChange={(e) =>
                  setSchool(e.target.value)} />
-            <input type="text" placeholder="Degree"
-                value={degree} onChange={(e) =>
+            <TextField type="text" label="Degree" size='small' fullWidth
+                variant='filled' value={degree} onChange={(e) =>
                     setDegree(e.target.value)} />
-            <input type="text" placeholder="Field of Study"
-                value={fieldOfStudy} onChange={(e) =>
+            <TextField type="text" label="Field of Study" size='small' fullWidth
+                variant='filled' value={fieldOfStudy} onChange={(e) =>
                     setFieldOfStudy(e.target.value)} />
-            <input type="date" placeholder="Start Date"
+            <TextField type="date" placeholder="Start Date"
                 value={startDate} onChange={(e) =>
                     setStartDate(e.target.value)} />
-            <input type="date" placeholder="End Date"
+            <TextField type="date" placeholder="End Date"
                 value={endDate} onChange={(e) =>
                     setEndDate(e.target.value)} />
-            <button type="submit">Submit</button>
-        </form>
-        <div>
+            <Button variant='contained' size='small' type="submit">Submit</Button>
+        </Box>
+        {/* <Box>
             {
                 education.map((edu, index) => {
                     return (
@@ -60,7 +66,7 @@ export const Education = () => {
                     )
                 })
             }
-        </div>
-    </div>
+        </Box> */}
+    </Stack>
   )
 }
