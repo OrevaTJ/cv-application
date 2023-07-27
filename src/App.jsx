@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import { PersonalInfo } from './components/PersonalInfo'
 import { Experience } from './components/Experience'
@@ -28,22 +30,24 @@ function App() {
   }, [personalInfo])
 
   return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Grid container spacing={2} m={4}>
       <Grid sm={12} md={4}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', borderRadius: '.3rem', 
-        boxShadow: '0 0 1px #000'}} fontSize={30} fontWeight={600} color='#3f51b5' width='100%'
-        py={4}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', 
+          borderRadius: '.3rem', boxShadow: '0 0 4px #ccc'}} 
+          fontSize={30} fontWeight={600} color='#3f51b5' width='100%'
+          my={4}>
           <PersonalInfo setInfo={setPersonalInfo}/>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', borderRadius: '.3rem', 
-        boxShadow: '0 0 1px #000'}} 
+        <Box sx={{ display: 'flex', justifyContent: 'center', 
+          borderRadius: '.3rem', boxShadow: '0 0 4px #ccc'}} 
           fontSize={30} fontWeight={600} color='#3f51b5' 
         >
           <Experience />
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', borderRadius: '.3rem', 
-        boxShadow: '0 0 1px #000'}} 
-          fontSize={30} fontWeight={600} color='#3f51b5' 
+        <Box sx={{ display: 'flex', justifyContent: 'center', 
+          borderRadius: '.3rem', boxShadow: '0 0 4px #ccc'}} 
+          fontSize={30} fontWeight={600} color='#3f51b5' my={4}
         >
           <Education />
         </Box>
@@ -57,6 +61,7 @@ function App() {
         </Box>
       </Grid>
     </Grid>
+    </LocalizationProvider>
   )
 }
 

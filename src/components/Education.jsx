@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { Stack, Box, TextField, Button } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 export const Education = () => {
     const [school, setSchool] = useState('');
@@ -45,12 +47,18 @@ export const Education = () => {
             <TextField type="text" label="Field of Study" size='small' fullWidth
                 variant='filled' value={fieldOfStudy} onChange={(e) =>
                     setFieldOfStudy(e.target.value)} />
-            <TextField type="date" placeholder="Start Date"
-                value={startDate} onChange={(e) =>
-                    setStartDate(e.target.value)} />
-            <TextField type="date" placeholder="End Date"
-                value={endDate} onChange={(e) =>
-                    setEndDate(e.target.value)} />
+            <Stack direction='row' spacing={2} sx={{width: '100%', 
+                '& .MuiFormControl-root': {width: '100%',}}}
+            >
+                <DatePicker type="date" label="From" views={['month', 'year']}
+                    value={startDate} onChange={(e) =>
+                    setStartDate(e.target.value)} sx={{width: '40%',}}
+                />
+                <DatePicker type="date" label="To" views={['month', 'year']}
+                    value={endDate} onChange={(e) =>
+                    setEndDate(e.target.value)} sx={{width: '40%',}}
+                />
+            </Stack>
             <Button variant='contained' size='small' type="submit">Submit</Button>
         </Box>
         {/* <Box>

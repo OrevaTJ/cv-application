@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { Stack, Box, TextField, Button } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 export const Experience = () => {
     const [organization, setOrganization] = useState('');
@@ -42,29 +44,45 @@ export const Experience = () => {
     }
 
   return (
-    <Stack>
-        <Box component='form' onSubmit={handleSubmit}
-            sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', 
-            alignItems: 'center', width: '100%', height: '100%', gap: '1rem', 
-            backgroundColor: '#fff', color: '#fff', padding: '1rem', 
-            overflow: 'hidden' }}
-        >
-            <TextField type="text" label="Organization" size='small' fullWidth
-                variant='filled' value={organization} onChange={e => setOrganization(e.target.value)} 
+    <Stack component='form' onSubmit={handleSubmit}
+        sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', 
+        alignItems: 'center', width: '100%', height: '100%', gap: '1rem', 
+        backgroundColor: '#fff', color: '#fff', padding: '1rem', 
+        overflow: 'hidden' }}
+    >
+        <TextField type="text" label="Organization" size='small' fullWidth
+            variant='filled' value={organization} 
+            onChange={e => setOrganization(e.target.value)}
+            sx={{width: '100%'}}
+        />
+        <TextField type="text" label="Position" size='small' fullWidth 
+            variant='filled' value={position} onChange={e => setPosition(e.target.value)}
+        />
+        <TextField type="text" label="Tasks" rows={2} fullWidth multiline
+            variant='filled' value={task} onChange={e => setTasks(e.target.value)}
+        />
+        <Button variant='contained' size='small' onClick={handleTasks}>
+            Add
+        </Button>
+        <Stack spacing={2} direction='row'>
+            <DatePicker type="date" label="From"
+                views={['month', 'year']}
+                value={startDate} onChange={(e) => setStartDate(e.target.value)}
+                
             />
-            <TextField type="text" label="Position" size='small' fullWidth 
-                variant='filled' value={position} onChange={e => setPosition(e.target.value)}
+            <DatePicker type="date" label="To"
+                views={['month', 'year']}
+                value={endDate} onChange={e => setEndDate(e.target.value)}
+                
             />
-            <TextField type="text" label="Tasks" rows={2} fullWidth multiline
-                variant='filled' value={task} onChange={e => setTasks(e.target.value)}
-            />
-            <Button variant='contained' size='small' onClick={handleTasks}>Add</Button>
-            <input type="date" placeholder="Start Date" 
-                value={startDate} onChange={e => setStartDate(e.target.value)}/>
-            <input type="date" placeholder="End Date" 
-                value={endDate} onChange={e => setEndDate(e.target.value)}/>
-            <Button variant='contained' size='small' type='submit'>Add Experience</Button>
-        </Box>
+        </Stack>
+        <Button variant='contained' size='small' type='submit'>
+            Add Experience
+        </Button>
+    </Stack>
+  )
+}
+
         {/* <Box>
             {experience.map((exp, index) => (
                 <div key={index}>
@@ -79,6 +97,3 @@ export const Experience = () => {
                 </div>
                 ))}
         </Box> */}
-    </Stack>
-  )
-}
